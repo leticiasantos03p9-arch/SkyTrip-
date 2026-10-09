@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1769ff">
+  <title>SkyTrip ✈</title><link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="topbar"><a class="brand" href="#" onclick="showPage('home');return false"><span class="plane">✈</span> SkyTrip</a><span class="tag">Sua próxima aventura</span></header>
+<main>
+  <section id="home" class="page">
+    <div class="hero"><div class="eyebrow">PLANEJE • EXPLORE • VIVA</div><h1>O mundo é seu<br><span>próximo destino.</span></h1><p>Organize suas viagens, monte roteiros e acompanhe seus gastos em um só lugar.</p><button class="primary" onclick="showPage('new')">＋ Planejar viagem</button><div class="hero-art">✈️<div class="orbit"></div></div></div>
+    <div class="section-heading"><div><h2>Suas viagens</h2><p>Seus planos começam aqui.</p></div><button class="secondary" onclick="showPage('trips')">Ver todas</button></div>
+    <div id="homeTrips" class="trip-grid"></div>
+  </section>
+  <section id="trips" class="page hidden"><div class="section-heading"><div><h1>Minhas viagens</h1><p>Todos os seus planos em um só lugar.</p></div><button class="primary" onclick="showPage('new')">＋ Nova</button></div><div id="allTrips" class="trip-grid"></div></section>
+  <section id="new" class="page hidden">
+    <button class="back" onclick="showPage('trips')">← Voltar</button><h1 id="formTitle">Nova viagem</h1><p class="muted">Preencha os detalhes da sua próxima aventura.</p>
+    <form id="tripForm" class="panel">
+      <input id="tripId" type="hidden">
+      <label>Destino<input id="destination" placeholder="Ex.: Recife, Brasil" required maxlength="100"></label>
+      <div class="two"><label>Data de ida<input id="startDate" type="date" required></label><label>Data de volta<input id="endDate" type="date" required></label></div>
+      <label>Número de viajantes<input id="travelers" type="number" min="1" max="100" value="1" required></label>
+      <div class="subheading"><h3>🗓️ Roteiro</h3><p>Adicione lugares ou atividades.</p></div>
+      <div class="inline"><input id="activityInput" placeholder="Ex.: Visitar o Marco Zero"><button type="button" class="secondary" onclick="addActivity()">Adicionar</button></div><ul id="activitiesList" class="chips"></ul>
+      <div class="subheading"><h3>💳 Gastos previstos</h3><p>O total é calculado automaticamente.</p></div>
+      <div class="inline"><input id="expenseName" placeholder="Ex.: Hospedagem"><input id="expenseAmount" type="number" min="0" step="0.01" placeholder="R$ 0,00"><button type="button" class="secondary" onclick="addExpense()">＋</button></div>
+      <ul id="expensesList" class="expense-list"></ul><div class="total"><span>Total estimado</span><strong id="totalValue">R$ 0,00</strong></div>
+      <button class="primary wide" type="submit">Salvar viagem</button>
+    </form>
+  </section>
+  <section id="detail" class="page hidden"><button class="back" onclick="showPage('trips')">← Minhas viagens</button><div id="detailContent"></div></section>
+</main>
+<nav class="bottom-nav"><button class="nav-item active" data-page="home" onclick="showPage('home')"><span>⌂</span>Início</button><button class="nav-item" data-page="trips" onclick="showPage('trips')"><span>▣</span>Viagens</button><button class="nav-item" data-page="new" onclick="newTrip()"><span>＋</span>Nova viagem</button></nav>
+<div id="toast" role="status"></div><script src="/app.js"></script>
+</body></html>
